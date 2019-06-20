@@ -6,6 +6,7 @@
 
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
   require_once (dirname(__FILE__).'/controllers/transactional_logs.php');
+  require_once (dirname(__FILE__).'/controllers/security.php');
 
   class elavon_converge_eu_gateway extends PaymentModule{
 
@@ -74,6 +75,7 @@
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
         //validate merchant information
         //encrypt secret key before saving in database
+        $elavon_secret_key_encrypted = security::encryptPassword($elavon_secret_key);
         Configuration::updateValue('ELAVON_ENABLED', $elavon_enabled);
         Configuration::updateValue('ELAVON_ENVIRONMENT', $elavon_environment);
         Configuration::updateValue('ELAVON_TITLE', $elavon_title);
@@ -82,7 +84,7 @@
         Configuration::updateValue('ELAVON_MERCHANT_NAME', $elavon_merchant_name);
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
-        Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key);
+        Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key_encrypted);
 
           //admin updated configuration log
         if($elavon_debug){transactional_logs::trans_log($elavon_enabled);}
