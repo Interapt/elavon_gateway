@@ -34,7 +34,7 @@
       if (!parent::install())
         return false;
       //register hooks
-      //create module Config settings in Preatshop config table
+      //create module Config settings in Prestashop config table
       return true;
     }
 
