@@ -6,6 +6,7 @@
 
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
   require_once (dirname(__FILE__).'/controllers/transactional_logs.php');
+  require_once (dirname(__FILE__).'/logs/console_log/console_logger.php');
 
   class elavon_converge_eu_gateway extends PaymentModule{
 
@@ -83,7 +84,7 @@
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
         Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key);
-
+        console_logger::log_it_out("im working");
           //admin updated configuration log
         if($elavon_debug){transactional_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty
