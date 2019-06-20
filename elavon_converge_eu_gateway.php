@@ -72,6 +72,8 @@
         $elavon_merchant_alias     = Tools::getValue('elavon_merchant_alias');
         $elavon_public_key         = Tools::getValue('elavon_public_key');
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
+        //validate merchant information
+        //encrypt secret key before saving in database
         Configuration::updateValue('ELAVON_ENABLED', $elavon_enabled);
         Configuration::updateValue('ELAVON_ENVIRONMENT', $elavon_environment);
         Configuration::updateValue('ELAVON_TITLE', $elavon_title);
@@ -101,6 +103,7 @@
       $elavon_merchant_alias = Configuration::get('ELAVON_MERCHANT_ALIAS');
       $elavon_public_key     = Configuration::get('ELAVON_PUBLIC_KEY');
       $elavon_secret_key     = Configuration::get('ELAVON_SECRET_KEY');
+      //decrypt secret key
       //assign these variables to Smarty
       $this->context->smarty->assign('elavon_enabled', $elavon_enabled);
       $this->context->smarty->assign('elavon_environment', $elavon_environment);
