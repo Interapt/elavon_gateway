@@ -3,10 +3,13 @@
   if (!defined('_PS_VERSION_')) {
     exit;
   }
-
-  use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
+  
+  //includes
   require_once (dirname(__FILE__).'/controllers/transactional_logs.php');
-
+  require_once (dirname(__FILE__).'/logs/console_log/console_logger.php');
+  
+  use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
+  
   class elavon_converge_eu_gateway extends PaymentModule{
 
     /**
@@ -37,15 +40,20 @@
       //create module Config settings in Prestashop config table
       return true;
     }
-
-    // uninstall method
+  
+    /**
+     * @return bool
+     */
     public function uninstall(){
       if (!parent::uninstall())
         return false;
       return true;
     }
-
-    //functions for setting page
+  
+    /**
+     * @return string
+     * this creates the config page in the back office
+     */
     public function getContent(){
       //because the getContent is the only method called when coming to the configuration page we need to
       //call our other functions to handle the processes of the page.
@@ -59,7 +67,10 @@
       return $this->display(__FILE__, 'configuration.tpl');
 
     }
-
+  
+    /**
+     * this handles the form for the config page
+     */
     public function processConfiguration(){
       if (Tools:: isSubmit('Configuration_form')) {
         //retrieve the POST or GET VALUE
@@ -83,7 +94,7 @@
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
         Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key);
-
+        console_logger::log_it_out("im working");
           //admin updated configuration log
         if($elavon_debug){transactional_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty
@@ -91,7 +102,10 @@
 
       }
     }
-
+  
+    /**
+     * This sets up the variables for the form on the config page.
+     */
     public function assignConfiguration(){
       //takes the key of the configuration wanted as a parameter, and returns the associated value
       $elavon_enabled        = Configuration::get('ELAVON_ENABLED');
@@ -120,7 +134,5 @@
       $this->context->controller->addJS($this->_path.'views/js/admin-js.js');
     }
 
-
-
-
+    // end of line
   }
