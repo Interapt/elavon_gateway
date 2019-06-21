@@ -94,7 +94,11 @@
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
         Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key);
-        console_logger::log_it_out("im working");
+        $encryption_key = substr(_PS_ADMIN_DIR_, -8);
+        $elavon_secret_key_encrypted = openssl_encrypt($elavon_secret_key, "AES-128-ECB", $encryption_key);
+        console_logger::log_it_out($elavon_secret_key_encrypted);
+        $decrypted_key = openssl_decrypt($elavon_secret_key_encrypted, "AES-128-ECB", $encryption_key);
+        console_logger::log_it_out($decrypted_key);
           //admin updated configuration log
         if($elavon_debug){transactional_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty

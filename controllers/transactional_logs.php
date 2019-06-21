@@ -15,5 +15,10 @@
         }
       return;
     }
+    
+    public static function find_string(){
+      $directory = __DIR__;
+      
+    }
 
   }
