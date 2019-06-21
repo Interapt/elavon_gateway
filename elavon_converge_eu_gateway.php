@@ -93,11 +93,10 @@
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
         Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key_encrypted);
-
           //admin updated configuration log
         if($elavon_debug){transaction_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty
-        $this->context->smarty->assign('confirmation', 'Youre settings have been saved');
+        $this->context->smarty->assign('confirmation', 'Your settings have been saved');
 
       }
     }
