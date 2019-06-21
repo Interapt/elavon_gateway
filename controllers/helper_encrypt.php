@@ -2,30 +2,30 @@
 
   class helper_encrypt{
 
-
-
-    public static function getKey()
-    {
-      $keyString = _PS_ADMIN_DIR_;
-      $realKey = substr($keyString, -9);
-      return $realKey;
+    /**
+     * @return bool|string
+     */
+    public static function get_key(){
+      $directory_string = _PS_ADMIN_DIR_;
+      $encryption_key = substr($directory_string, -9);
+      return $encryption_key;
     }
 
-
-
-    public static function encryptPassword($secretKey){
-      echo "<script>console.log('Im here');</script>";
-      $encryptionKey = self::getKey();
-      $encryptedPassword = openssl_encrypt($secretKey, "AES-128-ECB", $encryptionKey);
-      echo "<script>console.log($encryptedPassword);</script>";
-      return  $encryptedPassword;
+    /**
+     * @param $data
+     * @return string
+     */
+    public static function encrypt_data($data){
+      $encrypted_data = openssl_encrypt($data, "AES-128-ECB", self::get_key());
+      return  $encrypted_data;
     }
 
-
-    public static function decryptPassword($encryptedPassword){
-      $encryptionKey = self::getKey();
-      $decryptedPassword = openssl_decrypt($encryptedPassword, "AES-128-ECB", $encryptionKey);
-      echo "<script>console.log($decryptedPassword);</script>";
-      return $decryptedPassword;
+    /**
+     * @param $encrypted_data
+     * @return string
+     */
+    public static function decrypt_data($encrypted_data){
+      $decrypted_data = openssl_decrypt($encrypted_data, "AES-128-ECB", self::get_key());
+      return $decrypted_data;
     }
   }
