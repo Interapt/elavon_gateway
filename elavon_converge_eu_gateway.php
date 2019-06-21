@@ -6,7 +6,7 @@
 
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
   require_once (dirname(__FILE__).'/controllers/transactional_logs.php');
-  require_once (dirname(__FILE__).'/controllers/security.php');
+  require_once(dirname(__FILE__) . '/controllers/helper_encrypt.php');
 
   class elavon_converge_eu_gateway extends PaymentModule{
 
