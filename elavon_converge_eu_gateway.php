@@ -3,13 +3,11 @@
   if (!defined('_PS_VERSION_')) {
     exit;
   }
-  
-  //includes
-  require_once (dirname(__FILE__).'/controllers/transactional_logs.php');
-  require_once (dirname(__FILE__).'/logs/console_log/console_logger.php');
-  
+
+  require_once(dirname(__FILE__) . '/controllers/transaction_logs.php');
+  require_once(dirname(__FILE__) . '/controllers/helper_encrypt.php');
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
-  
+
   class elavon_converge_eu_gateway extends PaymentModule{
 
     /**
@@ -40,7 +38,7 @@
       //create module Config settings in Prestashop config table
       return true;
     }
-  
+
     /**
      * @return bool
      */
@@ -49,10 +47,10 @@
         return false;
       return true;
     }
-  
+
     /**
      * @return string
-     * this creates the config page in the back office
+     * this creates the configuration page on the back office.
      */
     public function getContent(){
       //because the getContent is the only method called when coming to the configuration page we need to
@@ -64,12 +62,12 @@
       $this->assignConfiguration();
       // the display method takes 2 arguments what type to display and the value
       // a block of html code is generated and returned.
-      return $this->display(__FILE__, 'configuration.tpl');
+      return $this->display(__FILE__, '/views/templates/admin/configuration.tpl');
 
     }
-  
+
     /**
-     * this handles the form for the config page
+     * this handles the form submits on the configuration page
      */
     public function processConfiguration(){
       if (Tools:: isSubmit('Configuration_form')) {
@@ -85,6 +83,7 @@
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
         //validate merchant information
         //encrypt secret key before saving in database
+        $elavon_secret_key_encrypted = helper_encrypt::encrypt_data($elavon_secret_key);
         Configuration::updateValue('ELAVON_ENABLED', $elavon_enabled);
         Configuration::updateValue('ELAVON_ENVIRONMENT', $elavon_environment);
         Configuration::updateValue('ELAVON_TITLE', $elavon_title);
@@ -93,18 +92,17 @@
         Configuration::updateValue('ELAVON_MERCHANT_NAME', $elavon_merchant_name);
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
-        Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key);
-        console_logger::log_it_out("im working");
+        Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key_encrypted);
           //admin updated configuration log
-        if($elavon_debug){transactional_logs::trans_log($elavon_enabled);}
+        if($elavon_debug){transaction_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty
-        $this->context->smarty->assign('confirmation', 'Youre settings have been saved');
+        $this->context->smarty->assign('confirmation', 'Your settings have been saved');
 
       }
     }
-  
+
     /**
-     * This sets up the variables for the form on the config page.
+     * set values for configuration page
      */
     public function assignConfiguration(){
       //takes the key of the configuration wanted as a parameter, and returns the associated value
@@ -116,8 +114,9 @@
       $elavon_merchant_name  = Configuration::get('ELAVON_MERCHANT_NAME');
       $elavon_merchant_alias = Configuration::get('ELAVON_MERCHANT_ALIAS');
       $elavon_public_key     = Configuration::get('ELAVON_PUBLIC_KEY');
-      $elavon_secret_key     = Configuration::get('ELAVON_SECRET_KEY');
+      $elavon_secret_key_encrypted    = Configuration::get('ELAVON_SECRET_KEY');
       //decrypt secret key
+      $elavon_secret_key_decrypted = helper_encrypt::decrypt_data($elavon_secret_key_encrypted);
       //assign these variables to Smarty
       $this->context->smarty->assign('elavon_enabled', $elavon_enabled);
       $this->context->smarty->assign('elavon_environment', $elavon_environment);
@@ -127,12 +126,11 @@
       $this->context->smarty->assign('elavon_merchant_name', $elavon_merchant_name);
       $this->context->smarty->assign('elavon_merchant_alias', $elavon_merchant_alias);
       $this->context->smarty->assign('elavon_public_key', $elavon_public_key);
-      $this->context->smarty->assign('elavon_secret_key', $elavon_secret_key);
+      $this->context->smarty->assign('elavon_secret_key', $elavon_secret_key_decrypted);
 
-      //
+      //inject the css and js files for the template
       $this->context->controller->addCSS($this->_path.'/views/css/admin-styles.css');
       $this->context->controller->addJS($this->_path.'views/js/admin-js.js');
     }
 
-    // end of line
   }
