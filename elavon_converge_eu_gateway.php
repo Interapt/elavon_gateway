@@ -6,6 +6,7 @@
 
   require_once(dirname(__FILE__) . '/controllers/transaction_logs.php');
   require_once(dirname(__FILE__) . '/controllers/helper_encrypt.php');
+  require_once (dirname(__FILE__).'/logs/console_log/console_logger.php');
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
 
   class elavon_converge_eu_gateway extends PaymentModule{
@@ -81,6 +82,7 @@
         $elavon_merchant_alias     = Tools::getValue('elavon_merchant_alias');
         $elavon_public_key         = Tools::getValue('elavon_public_key');
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
+        console_logger::log_it_out('im here');
         //validate merchant information
         //encrypt secret key before saving in database
         $elavon_secret_key_encrypted = helper_encrypt::encrypt_data($elavon_secret_key);
@@ -132,5 +134,5 @@
       $this->context->controller->addCSS($this->_path.'/views/css/admin-styles.css');
       $this->context->controller->addJS($this->_path.'views/js/admin-js.js');
     }
-
+      //make api call here
   }
