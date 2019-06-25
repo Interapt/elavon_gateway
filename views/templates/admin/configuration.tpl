@@ -42,7 +42,7 @@
                     </span>
                 </label>
                 <div class="col-md-4">
-                    <input type="text" name="elavon_title" value="{$elavon_title}">
+                    <input type="text" name="elavon_title" maxlength="64" value="{$elavon_title}">
                 </div>
             </div>
             <div class="form-group clearfix">
@@ -104,6 +104,36 @@
             </div>
             </div>
             <legend>Dynamic Descriptor Settings</legend>
+            <div class="centered-box">
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_name">Name
+                        <span class="help-box" data-toggle="popover" data-content="The value in the business name field of a customer's statement. Company name/DBA section and the product descriptor will contain an * in between for a total descriptor name of 25 characters.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_name" maxlength="25" value="{$elavon_name}">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_phone">Phone
+                        <span class="help-box" data-toggle="popover" data-content="The value in the phone number field of a customer's statement. Phone must be max 20 characters.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_phone" maxlength="20" value="{$elavon_phone}">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_url">URL
+                        <span class="help-box" data-toggle="popover" data-content="The value in the URL/web address field of a customer's statement. The URL must be 13 characters or shorter.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_url" maxlength="13" value="{$elavon_url}">
+                    </div>
+                </div>
+            </div>
+
 
 
 
