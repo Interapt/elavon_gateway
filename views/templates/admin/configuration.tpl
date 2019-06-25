@@ -10,7 +10,15 @@
         <img src="/prestashop/modules/elavon_converge_eu_gateway/views/images/elavon-logo-76DF5D45E8-seeklogo.com.png" alt="" width="150">
         <div class="panel-heading">
         </div>
-            <legend>Settings</legend>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">General Settings</a></li>
+            <li><a data-toggle="tab" href="#menu1">Dynamic Descriptor Settings</a></li>
+
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <legend>General Settings</legend>
         <form action="" method="post">
             <div class="centered-box">
             <div class="form-group clearfix">
@@ -103,6 +111,8 @@
                 </div>
             </div>
             </div>
+            </div>
+            <div id="menu1" class="tab-pane fade">
             <legend>Dynamic Descriptor Settings</legend>
             <div class="centered-box">
                 <div class="form-group clearfix">
@@ -133,8 +143,7 @@
                     </div>
                 </div>
             </div>
-
-
+            </div>
 
 
             <div class="panel-footer">
