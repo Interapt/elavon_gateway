@@ -55,8 +55,8 @@
      * this creates the config page in the back office
      */
     public function getContent(){
-      //because the getContent is the only method called when coming to the configuration page we need to
-      //call our other functions to handle the processes of the page.
+      // because the getContent is the only method called when coming to the configuration page we need to
+      // call our other functions to handle the processes of the page.
       // write a process configuration method that will handle the submission of the form
       // this method will connect to the validation of the entered information. story B-194616
       $this->processConfiguration();
@@ -66,6 +66,49 @@
       // a block of html code is generated and returned.
       return $this->display(__FILE__, 'configuration.tpl');
 
+    }
+    
+//    public function test_call(){
+//      $url = 'https://memotor-dev.herokuapp.com/user/login';
+//      $body_data  = array('email' => 'test@test.com', 'password'=> '12345678');
+//
+//      $options = array(
+//        'http' => array(
+//          'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+//          'method'  => 'POST',
+//          'content' => http_build_query($body_data)
+//        )
+//      );
+//      $context  = stream_context_create($options);
+//      $result = file_get_contents($url, false, $context);
+//      if ($result === FALSE) {
+//        console_logger::log_it_out('well shit went wrong.');
+//      }
+//      console_logger::log_it_out($result);
+//      //var_dump($result);
+//    }
+    
+    public function test_call2(){
+    $curl = curl_init();
+    $body_data = array(
+      'email' => 'test@test.com',
+      'password'=> '12345678'
+    );
+    
+      curl_setopt($curl, CURLOPT_POST, 1);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $body_data);
+      curl_setopt($curl, CURLOPT_URL, 'https://memotor-dev.herokuapp.com/user/login');
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      
+      $result = curl_exec($curl);
+      
+      if ($result === FALSE) {
+        console_logger::log_it_out('well shit went wrong.');
+      }
+      console_logger::log_it_out($result);
+      console_logger::log_it_out("yes its me");
+      
     }
   
     /**
@@ -84,6 +127,7 @@
         $elavon_public_key         = Tools::getValue('elavon_public_key');
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
         //validate merchant information
+        $this->test_call2();
         //encrypt secret key before saving in database
         Configuration::updateValue('ELAVON_ENABLED', $elavon_enabled);
         Configuration::updateValue('ELAVON_ENVIRONMENT', $elavon_environment);
