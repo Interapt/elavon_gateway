@@ -6,6 +6,7 @@
 
   require_once(dirname(__FILE__) . '/controllers/transaction_logs.php');
   require_once(dirname(__FILE__) . '/controllers/helper_encrypt.php');
+  require_once(dirname(__FILE__) . '/controllers/validations.php');
   use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
 
   class elavon_converge_eu_gateway extends PaymentModule{
@@ -88,9 +89,13 @@
         $elavon_integration_option = Tools::getValue('elavon_integration_option');
         $elavon_converge_email     = Tools::getValue('elavon_converge_email');
         $elavon_license_code       = Tools::getValue('elavon_license_code');
-
-        //validate merchant information
-        //encrypt secret key before saving in database
+        
+        // validate the phone number
+        // if validation phone number returns true then set an error message for the template.
+        // $this->context->smarty->assign('error', 'make this something related to the phone number');
+        // else continue.
+        // validate merchant information
+        // encrypt secret key before saving in database
         $elavon_secret_key_encrypted = helper_encrypt::encrypt_data($elavon_secret_key);
         Configuration::updateValue('ELAVON_ENABLED', $elavon_enabled);
         Configuration::updateValue('ELAVON_ENVIRONMENT', $elavon_environment);

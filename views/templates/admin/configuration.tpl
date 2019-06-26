@@ -3,7 +3,8 @@
 {if isset($confirmation)}
     <div class="alert alert-success">Settings updated</div>
 {/if}
-
+{* if there is an error then show it to the user*}
+{* see if you can assign the default tab to be open to DDS *}
 <fieldset>
     <h4>Receive credit card payments using Elavon Converge EU Gateway.</h4>
     <div class="panel" style="align-content: center">
