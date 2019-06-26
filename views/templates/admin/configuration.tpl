@@ -110,6 +110,53 @@
                    <input type="password" name="elavon_secret_key" value="{$elavon_secret_key}">
                 </div>
             </div>
+
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_payment_action">Payment Action
+                    <span class="help-box" data-toggle="popover" data-content="Choose whether you wish to capture funds immediately or authorize payment only.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_payment_action">
+                        <option {if $elavon_payment_action != "Delayed Capture"} selected = selected {/if}value="Capture">Authorize and Immediate Capture </option>
+                        <option {if $elavon_payment_action == "Delayed Capture"} selected = selected {/if}value="Delayed Capture">Authorize and Delayed Capture</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_integration_option">Integration Option
+                    <span class="help-box" data-toggle="popover" data-content="Choose the integration option.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_integration_option">
+                        <option {if $elavon_integration_option != "Lightbox"} selected = selected {/if}value="HPP"> HPP (PCI SAQ A) </option>
+                        <option {if $elavon_integration_option == "Lightbox"} selected = selected {/if}value="Lightbox">Lightbox (PCI SAQ A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_converge_email">Converge Email
+                    <span class="help-box" data-toggle="popover" data-content="Choose if Converge should send emails to the customer.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_converge_email">
+                        <option {if $elavon_converge_email == "true"} selected = selected {/if}value="true">Yes</option>
+                        <option {if $elavon_converge_email != "true"} selected = selected {/if}value="false">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_license_code">License Code</label>
+                <div class="col-md-4">
+                    <input  type="text" name="elavon_license_code" value="{$elavon_license_code}">
+                </div>
+            </div>
             </div>
             </div>
             <div id="menu1" class="tab-pane fade">
@@ -145,8 +192,6 @@
                 </div>
             </div>
             </div>
-
-
             <div class="panel-footer">
                 <input class="btn btn-default pull-right" type="submit" name="Configuration_form" value="Save" />
             </div>
