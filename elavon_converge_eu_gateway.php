@@ -81,10 +81,14 @@
         $elavon_merchant_alias     = Tools::getValue('elavon_merchant_alias');
         $elavon_public_key         = Tools::getValue('elavon_public_key');
         $elavon_secret_key         = Tools::getValue('elavon_secret_key');
+        $elavon_name               = Tools::getValue('elavon_name');
+        $elavon_phone              = Tools::getValue('elavon_phone');
+        $elavon_url                = Tools::getValue('elavon_url');
         $elavon_payment_action     = Tools::getValue('elavon_payment_action');
         $elavon_integration_option = Tools::getValue('elavon_integration_option');
         $elavon_converge_email     = Tools::getValue('elavon_converge_email');
         $elavon_license_code       = Tools::getValue('elavon_license_code');
+
         //validate merchant information
         //encrypt secret key before saving in database
         $elavon_secret_key_encrypted = helper_encrypt::encrypt_data($elavon_secret_key);
@@ -97,10 +101,14 @@
         Configuration::updateValue('ELAVON_MERCHANT_ALIAS', $elavon_merchant_alias);
         Configuration::updateValue('ELAVON_PUBLIC_KEY', $elavon_public_key);
         Configuration::updateValue('ELAVON_SECRET_KEY', $elavon_secret_key_encrypted);
+        Configuration::updateValue('ELAVON_NAME', $elavon_name);
+        Configuration::updateValue('ELAVON_PHONE', $elavon_phone);
+        Configuration::updateValue('ELAVON_URL', $elavon_url);
         Configuration::updateValue('ELAVON_PAYMENT_ACTION', $elavon_payment_action);
         Configuration::updateValue('ELAVON_INTEGRATION_OPTION', $elavon_integration_option);
         Configuration::updateValue('ELAVON_CONVERGE_EMAIL', $elavon_converge_email);
         Configuration::updateValue('ELAVON_LICENSE_CODE', $elavon_license_code);
+
           //admin updated configuration log
         if($elavon_debug){transaction_logs::trans_log($elavon_enabled);}
         //assign these variables to Smarty
@@ -114,19 +122,24 @@
      */
     public function assignConfiguration(){
       //takes the key of the configuration wanted as a parameter, and returns the associated value
-      $elavon_enabled                 = Configuration::get('ELAVON_ENABLED');
-      $elavon_environment             = Configuration::get('ELAVON_ENVIRONMENT');
-      $elavon_title                   = Configuration::get('ELAVON_TITLE');
-      $elavon_debug                   = Configuration::get('ELAVON_DEBUG');
-      $elavon_processor_id            = Configuration::get('ELAVON_PROCESSOR_ID');
-      $elavon_merchant_name           = Configuration::get('ELAVON_MERCHANT_NAME');
-      $elavon_merchant_alias          = Configuration::get('ELAVON_MERCHANT_ALIAS');
-      $elavon_public_key              = Configuration::get('ELAVON_PUBLIC_KEY');
-      $elavon_secret_key_encrypted    = Configuration::get('ELAVON_SECRET_KEY');
-      $elavon_payment_action          = Configuration::get('ELAVON_PAYMENT_ACTION');
-      $elavon_integration_option      = Configuration::get('ELAVON_INTEGRATION_OPTION');
-      $elavon_converge_email          = Configuration::get('ELAVON_CONVERGE_EMAIL');
-      $elavon_license_code            = Configuration::get('ELAVON_LICENSE_CODE');
+
+      $elavon_enabled               = Configuration::get('ELAVON_ENABLED');
+      $elavon_environment           = Configuration::get('ELAVON_ENVIRONMENT');
+      $elavon_title                 = Configuration::get('ELAVON_TITLE');
+      $elavon_debug                 = Configuration::get('ELAVON_DEBUG');
+      $elavon_processor_id          = Configuration::get('ELAVON_PROCESSOR_ID');
+      $elavon_merchant_name         = Configuration::get('ELAVON_MERCHANT_NAME');
+      $elavon_merchant_alias        = Configuration::get('ELAVON_MERCHANT_ALIAS');
+      $elavon_public_key            = Configuration::get('ELAVON_PUBLIC_KEY');
+      $elavon_secret_key_encrypted  = Configuration::get('ELAVON_SECRET_KEY');
+      $elavon_name                  = Configuration::get('ELAVON_NAME');
+      $elavon_phone                 = Configuration::get('ELAVON_PHONE');
+      $elavon_url                   = Configuration::get('ELAVON_URL');
+      $elavon_payment_action        = Configuration::get('ELAVON_PAYMENT_ACTION');
+      $elavon_integration_option    = Configuration::get('ELAVON_INTEGRATION_OPTION');
+      $elavon_converge_email        = Configuration::get('ELAVON_CONVERGE_EMAIL');
+      $elavon_license_code          = Configuration::get('ELAVON_LICENSE_CODE');
+
       //decrypt secret key
       $elavon_secret_key_decrypted = helper_encrypt::decrypt_data($elavon_secret_key_encrypted);
       //assign these variables to Smarty
@@ -139,6 +152,9 @@
       $this->context->smarty->assign('elavon_merchant_alias', $elavon_merchant_alias);
       $this->context->smarty->assign('elavon_public_key', $elavon_public_key);
       $this->context->smarty->assign('elavon_secret_key', $elavon_secret_key_decrypted);
+      $this->context->smarty->assign('elavon_name', $elavon_name);
+      $this->context->smarty->assign('elavon_phone', $elavon_phone);
+      $this->context->smarty->assign('elavon_url', $elavon_url);
       $this->context->smarty->assign('elavon_payment_action', $elavon_payment_action);
       $this->context->smarty->assign('elavon_integration_option', $elavon_integration_option);
       $this->context->smarty->assign('elavon_converge_email', $elavon_converge_email);

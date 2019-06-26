@@ -10,7 +10,15 @@
         <img src="/prestashop/modules/elavon_converge_eu_gateway/views/images/elavon-logo-76DF5D45E8-seeklogo.com.png" alt="" width="150">
         <div class="panel-heading">
         </div>
-            <legend>Settings</legend>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">General Settings</a></li>
+            <li><a data-toggle="tab" href="#menu1">Dynamic Descriptor Settings</a></li>
+
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <legend></legend>
         <form action="" method="post">
             <div class="centered-box">
             <div class="form-group clearfix">
@@ -42,7 +50,7 @@
                     </span>
                 </label>
                 <div class="col-md-4">
-                    <input type="text" name="elavon_title" value="{$elavon_title}">
+                    <input type="text" name="elavon_title" maxlength="64" value="{$elavon_title}">
                 </div>
             </div>
             <div class="form-group clearfix">
@@ -150,20 +158,40 @@
                 </div>
             </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-            <legend>Dynamic Descriptor Settings</legend>
-
-
-
+            </div>
+            <div id="menu1" class="tab-pane fade">
+            <legend></legend>
+                <h4>Your dynamic descriptor settings affect what appears on your customer's credit card statement.</h4>
+            <div class="centered-box">
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_name">Name
+                        <span class="help-box" data-toggle="popover" data-content="The value in the business name field of a customer's statement. Company name/DBA section and the product descriptor will contain an * in between for a total descriptor name of 25 characters.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_name" maxlength="25" value="{$elavon_name}">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_phone">Phone
+                        <span class="help-box" data-toggle="popover" data-content="The value in the phone number field of a customer's statement. Phone must be max 20 characters.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_phone" maxlength="20" value="{$elavon_phone}">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-5" for="elavon_url">URL
+                        <span class="help-box" data-toggle="popover" data-content="The value in the URL/web address field of a customer's statement. The URL must be 13 characters or shorter.">
+                    </span>
+                    </label>
+                    <div class="col-md-4">
+                        <input type="text" name="elavon_url" maxlength="13" value="{$elavon_url}">
+                    </div>
+                </div>
+            </div>
+            </div>
             <div class="panel-footer">
                 <input class="btn btn-default pull-right" type="submit" name="Configuration_form" value="Save" />
             </div>
