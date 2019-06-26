@@ -21,7 +21,7 @@
       $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
       $this->bootstrap              = true;
       parent::__construct();
-      //these properties will need to be translated once we have the translator file set up
+      // these properties will need to be translated once we have the translator file set up
       // $this->displayName = $this->l('Elavon Converge EU Gateway');
       $this->displayName = 'Elavon Converge EU Gateway';
       $this->description = 'Receive credit card payments using Elavon Converge EU Gateway';

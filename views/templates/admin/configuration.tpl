@@ -191,9 +191,15 @@
                     </div>
                 </div>
             </div>
+
+            </div>
+            <div class="col-lg-5">
+
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-default pull-right save-btn" type="submit" name="Configuration_form" value="Save" />
             </div>
             <div class="panel-footer">
-                <input class="btn btn-default pull-right" type="submit" name="Configuration_form" value="Save" />
             </div>
         </form>
     </div>
