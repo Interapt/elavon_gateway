@@ -18,7 +18,7 @@
         </ul>
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-                <legend>General Settings</legend>
+                <legend></legend>
         <form action="" method="post">
             <div class="centered-box">
             <div class="form-group clearfix">
@@ -113,7 +113,8 @@
             </div>
             </div>
             <div id="menu1" class="tab-pane fade">
-            <legend>Dynamic Descriptor Settings</legend>
+            <legend></legend>
+                <h4>Your dynamic descriptor settings affect what appears on your customer's credit card statement.</h4>
             <div class="centered-box">
                 <div class="form-group clearfix">
                     <label class="col-lg-5" for="elavon_name">Name
