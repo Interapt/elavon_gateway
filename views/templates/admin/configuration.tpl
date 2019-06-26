@@ -102,7 +102,64 @@
                    <input type="password" name="elavon_secret_key" value="{$elavon_secret_key}">
                 </div>
             </div>
+
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_payment_action">Payment Action
+                    <span class="help-box" data-toggle="popover" data-content="Choose whether you wish to capture funds immediately or authorize payment only.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_payment_action">
+                        <option {if $elavon_payment_action == ""} selected = selected {/if}value="Authorize and immediate Capture">Authorize and Immediate Capture </option>
+                        <option {if $elavon_payment_action != ""} selected = selected {/if}value="Authorize and Delayed Capture">Authorize and Delayed Capture</option>
+                    </select>
+                </div>
             </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_integration_option">Integration Option
+                    <span class="help-box" data-toggle="popover" data-content="Choose the integration option.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_integration_option">
+                        <option {if $elavon_integration_option == ""} selected = selected {/if}value="HPP (PCI SAQ A)"> HPP (PCI SAQ A) </option>
+                        <option {if $elavon_integration_option != ""} selected = selected {/if}value="Lightbox (PCI SAQ A">Lightbox (PCI SAQ A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_converge_email">Converge Email
+                    <span class="help-box" data-toggle="popover" data-content="Choose if Converge should send emails to the customer.">
+                    </span>
+                </label>
+                <div class="col-md-4">
+                    <select name="elavon_converge_email">
+                        <option {if $elavon_converge_email == ""} selected = selected {/if}value="Yes">Yes</option>
+                        <option {if $elavon_converge_email != ""} selected = selected {/if}value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group clearfix">
+                <label class="col-lg-5" for="elavon_license_code">License Code</label>
+                <div class="col-md-4">
+                    <input  type="text" name="elavon_license_code" value="{$elavon_license_code}">
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
             <legend>Dynamic Descriptor Settings</legend>
 
 
