@@ -111,8 +111,8 @@
                 </label>
                 <div class="col-md-4">
                     <select name="elavon_payment_action">
-                        <option {if $elavon_payment_action == ""} selected = selected {/if}value="Authorize and immediate Capture">Authorize and Immediate Capture </option>
-                        <option {if $elavon_payment_action != ""} selected = selected {/if}value="Authorize and Delayed Capture">Authorize and Delayed Capture</option>
+                        <option {if $elavon_payment_action != "Delayed Capture"} selected = selected {/if}value="Capture">Authorize and Immediate Capture </option>
+                        <option {if $elavon_payment_action == "Delayed Capture"} selected = selected {/if}value="Delayed Capture">Authorize and Delayed Capture</option>
                     </select>
                 </div>
             </div>
@@ -124,8 +124,8 @@
                 </label>
                 <div class="col-md-4">
                     <select name="elavon_integration_option">
-                        <option {if $elavon_integration_option == ""} selected = selected {/if}value="HPP (PCI SAQ A)"> HPP (PCI SAQ A) </option>
-                        <option {if $elavon_integration_option != ""} selected = selected {/if}value="Lightbox (PCI SAQ A">Lightbox (PCI SAQ A)</option>
+                        <option {if $elavon_integration_option != "Lightbox"} selected = selected {/if}value="HPP"> HPP (PCI SAQ A) </option>
+                        <option {if $elavon_integration_option == "Lightbox"} selected = selected {/if}value="Lightbox">Lightbox (PCI SAQ A)</option>
                     </select>
                 </div>
             </div>
@@ -137,8 +137,8 @@
                 </label>
                 <div class="col-md-4">
                     <select name="elavon_converge_email">
-                        <option {if $elavon_converge_email == ""} selected = selected {/if}value="Yes">Yes</option>
-                        <option {if $elavon_converge_email != ""} selected = selected {/if}value="No">No</option>
+                        <option {if $elavon_converge_email == "true"} selected = selected {/if}value="true">Yes</option>
+                        <option {if $elavon_converge_email != "true"} selected = selected {/if}value="false">No</option>
                     </select>
                 </div>
             </div>

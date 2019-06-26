@@ -84,7 +84,7 @@
         $elavon_payment_action     = Tools::getValue('elavon_payment_action');
         $elavon_integration_option = Tools::getValue('elavon_integration_option');
         $elavon_converge_email     = Tools::getValue('elavon_converge_email');
-        $elavon_license_code       = Tools::getValue('elavon_converge');
+        $elavon_license_code       = Tools::getValue('elavon_license_code');
         //validate merchant information
         //encrypt secret key before saving in database
         $elavon_secret_key_encrypted = helper_encrypt::encrypt_data($elavon_secret_key);
